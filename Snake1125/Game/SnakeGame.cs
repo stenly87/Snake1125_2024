@@ -1,8 +1,6 @@
 ﻿using Snake1125.Game.Drawing;
 using Snake1125.Game.Drawing.DrawObjects;
 using Snake1125.Game.Objects;
-using Snake1125.Game.Drawing;
-using Snake1125.Game.Objects;
 
 namespace Snake1125
 {
@@ -13,7 +11,8 @@ namespace Snake1125
         GameField field;
         Control control;
         Snake snake;
-        public bool SnakeIsAlive { get; set; }
+        bool stop = false;
+        public bool SnakeIsAlive { get => !stop && snake.IsAlive; }
         internal void SendNewSnakeDirection(Direction direction)
         {
             snake.Direction = direction;
@@ -23,19 +22,16 @@ namespace Snake1125
         {
             draw = new DrawSystem();
             control = new Control();
-            draw.RegistrationDraw(typeof(GameField), new GameFieldDraw());
-            draw.RegistrationDraw(typeof(Snake), new SnakeDraw());
-            draw.RegistrationDraw(typeof(Apple), new AppleDraw());
         }
 
         void CreateSnake()
         {
-            snake = new Snake(50, 50);
-            SnakeIsAlive = true;
+            snake = new Snake(50, 50);            
         }
 
         internal void Start()
         {
+            stop = false;
             CreateSnake();
             field = new GameField();
             RunGame();
@@ -48,12 +44,19 @@ namespace Snake1125
             while (SnakeIsAlive)
             {
                 snake.Move();
-                draw.Draw(snake);
                 field.CheckIntersect(snake);
+                draw.Draw(snake);
                 foreach (var obj in field.objects)
                     draw.Draw(obj);
-                Thread.Sleep(500);
+                Thread.Sleep(200);
             }
+            Console.WriteLine("Конец игры");
+        }
+
+        internal void Stop()
+        {
+            stop = true;
+            Console.WriteLine("Игра прервана");
         }
     }
 }

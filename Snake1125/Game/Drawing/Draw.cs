@@ -11,9 +11,14 @@ namespace Snake1125.Game.Drawing
         public DrawSystem()
         {
             this.graphics = Graphics.FromHwnd(System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle);
+
+            RegistrationDraw(typeof(GameField), new GameFieldDraw());
+            RegistrationDraw(typeof(Snake), new SnakeDraw());
+            RegistrationDraw(typeof(Apple), new AppleDraw());
+            RegistrationDraw(typeof(Trap), new TrapDraw());
         }
 
-        public void RegistrationDraw(Type type, IDraw draw)
+        void RegistrationDraw(Type type, IDraw draw)
         {
             draws.Add(type, draw);
         }

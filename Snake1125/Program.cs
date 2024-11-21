@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            Console.ReadLine();
             SnakeGame game = new SnakeGame();
             game.Start();
         }

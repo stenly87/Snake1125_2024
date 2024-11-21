@@ -3,11 +3,11 @@ using System.Drawing;
 
 namespace Snake1125.Game.Drawing.DrawObjects
 {
-    internal class AppleDraw : IDraw
+    internal class TrapDraw : IDraw
     {
         public void Draw(GameObject gameObject, Graphics graphics)
         {
-            graphics.FillEllipse(Brushes.Red, gameObject.X, gameObject.Y, 10, 10);
+            graphics.FillEllipse(Brushes.DarkRed, gameObject.X, gameObject.Y, 10, 10);
         }
     }
 

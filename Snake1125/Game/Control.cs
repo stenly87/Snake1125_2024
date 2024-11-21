@@ -17,6 +17,7 @@ namespace Snake1125
             while (game.SnakeIsAlive)
             {
                 var key = Console.ReadKey();
+                Console.SetCursorPosition(0, 0);
                 Direction direction;
                 switch (key.Key)
                 {
@@ -33,7 +34,7 @@ namespace Snake1125
                         direction = Direction.right;
                         break;
                     case ConsoleKey.Escape:
-                        Console.WriteLine("Игра прервана");
+                        game.Stop();
                         return;
                     default:
                         continue;

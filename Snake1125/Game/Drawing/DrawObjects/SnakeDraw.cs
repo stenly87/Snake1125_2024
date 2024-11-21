@@ -8,7 +8,12 @@ namespace Snake1125.Game.Drawing.DrawObjects
         public void Draw(GameObject gameObject, Graphics graphics)
         {
             Snake snake = (Snake)gameObject;
-            graphics.FillEllipse(Brushes.Black, snake.Tale.X, snake.Tale.Y, 10, 10);
+            var tale = snake.Tale;
+            while (tale != null)
+            {
+                graphics.FillEllipse(Brushes.Black, tale.X, tale.Y, 10, 10);
+                tale = snake.Tale;
+            }
             graphics.FillEllipse(Brushes.Green, snake.X, snake.Y, 10, 10);
         }
     }

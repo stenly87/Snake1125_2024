@@ -2,9 +2,9 @@
 
 namespace Snake1125
 {
-    internal class Apple : GameObject, ISnakeIntersect
+    internal class Trap : GameObject, ISnakeIntersect
     {
-        public Apple(int x, int y)
+        public Trap(int x, int y)
         {
             X = x;
             Y = y;
@@ -12,7 +12,7 @@ namespace Snake1125
 
         public void Execute(Snake snake)
         {
-            snake.Increase();
+            snake.Decrease();
         }
     }
 }
