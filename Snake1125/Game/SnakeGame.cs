@@ -12,11 +12,8 @@ namespace Snake1125
         Control control;
         Snake snake;
         bool stop = false;
-        public bool SnakeIsAlive { get => !stop && snake.IsAlive; }
-        internal void SendNewSnakeDirection(Direction direction)
-        {
-            snake.Direction = direction;
-        }
+
+        public bool SnakeIsAlive { get => !stop && snake.IsAlive; }        
 
         public SnakeGame()
         {
@@ -27,6 +24,11 @@ namespace Snake1125
         void CreateSnake()
         {
             snake = new Snake(50, 50);            
+        }
+
+        internal void SendNewSnakeDirection(Direction direction)
+        {
+            snake.Direction = direction;
         }
 
         internal void Start()
@@ -48,6 +50,8 @@ namespace Snake1125
                 draw.Draw(snake);
                 foreach (var obj in field.objects)
                     draw.Draw(obj);
+                //Thread.Sleep(200) это пауза для текущего потока в 200 миллисекуд. Код перестает выполняться и ждет указанное время. 1сек = 1000мс
+                // чем меньше пауза, тем быстрее будет двигаться змейка
                 Thread.Sleep(200);
             }
             Console.WriteLine("Конец игры");

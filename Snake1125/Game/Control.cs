@@ -8,6 +8,9 @@ namespace Snake1125
         internal void Run(SnakeGame game)
         {
             this.game = game;
+
+            //Thread это класс для запуска метода в отдельном потоке. Отдельный поток нужен, чтобы метод мог выполняться обособленно
+            //он не будет тормозить остальную часть программы
             Thread thread = new Thread(ListenKeyboard);
             thread.Start();
         }

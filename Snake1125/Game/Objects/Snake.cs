@@ -5,13 +5,13 @@
         public override int X { get => cells[0].X; set { } }
         public override int Y { get => cells[0].Y; set { } }
 
-        public GameObject Tale { get => stack.Count > 0 ? stack.Pop() : null; }
+        public GameObject Tale { get => stackTale.Count > 0 ? stackTale.Pop() : null; }
         public Direction Direction { get; set; }
         public bool IsAlive { get; internal set; } = true;
 
         List<GameObject> cells;
 
-        Stack<GameObject> stack = new();
+        Stack<GameObject> stackTale = new();
 
         public Snake(int x, int y)
         {
@@ -20,7 +20,7 @@
 
         internal void Move()
         {
-            stack.Push(new GameObject { X = cells[^1].X, Y = cells[^1].Y });
+            stackTale.Push(new GameObject { X = cells[^1].X, Y = cells[^1].Y });
             for (int i = cells.Count - 1; i > 0; i--)
             {
                 cells[i].X = cells[i - 1].X;
@@ -56,7 +56,7 @@
                 return;
             }
 
-            stack.Push(new GameObject { X = cells[^1].X, Y = cells[^1].Y });
+            stackTale.Push(new GameObject { X = cells[^1].X, Y = cells[^1].Y });
             cells.Remove(cells[^1]);
         }
     }
